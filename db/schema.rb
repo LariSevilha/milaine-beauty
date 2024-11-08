@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_08_192904) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,42 +73,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
     t.index ["post_id", "album_id"], name: "index_post_album"
   end
 
-  create_table "archive_completes", force: :cascade do |t|
-    t.string "title"
-    t.string "archive"
-    t.bigint "bid_complete_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["bid_complete_id"], name: "index_archive_completes_on_bid_complete_id"
-  end
-
-  create_table "archive_contract_ends", force: :cascade do |t|
-    t.string "title"
-    t.string "archive"
-    t.bigint "contract_end_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["contract_end_id"], name: "index_archive_contract_ends_on_contract_end_id"
-  end
-
-  create_table "archive_contracts", force: :cascade do |t|
-    t.string "title"
-    t.string "archive"
-    t.bigint "contract_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["contract_id"], name: "index_archive_contracts_on_contract_id"
-  end
-
-  create_table "archive_notices", force: :cascade do |t|
-    t.string "title"
-    t.string "archive"
-    t.bigint "bid_notice_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["bid_notice_id"], name: "index_archive_notices_on_bid_notice_id"
-  end
-
   create_table "archive_pages", force: :cascade do |t|
     t.string "title"
     t.string "link"
@@ -116,15 +80,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "page_id"
-  end
-
-  create_table "archive_results", force: :cascade do |t|
-    t.string "title"
-    t.string "archive"
-    t.bigint "bid_result_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["bid_result_id"], name: "index_archive_results_on_bid_result_id"
   end
 
   create_table "archive_secretaries", force: :cascade do |t|
@@ -177,52 +132,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
     t.index ["format_ad_id"], name: "index_banners_on_format_ad_id"
   end
 
-  create_table "bid_completes", force: :cascade do |t|
-    t.string "file"
-    t.string "modality"
-    t.string "process"
-    t.date "judgment"
-    t.string "object"
-    t.bigint "bidding_category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.date "publish"
-    t.index ["bidding_category_id"], name: "index_bid_completes_on_bidding_category_id"
-  end
-
-  create_table "bid_notices", force: :cascade do |t|
-    t.string "file"
-    t.date "publish_date"
-    t.string "number"
-    t.string "modality"
-    t.string "object"
-    t.bigint "bidding_category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.date "publish"
-    t.index ["bidding_category_id"], name: "index_bid_notices_on_bidding_category_id"
-  end
-
-  create_table "bid_results", force: :cascade do |t|
-    t.string "file"
-    t.date "date_result"
-    t.string "modality"
-    t.string "number"
-    t.string "winner"
-    t.string "object"
-    t.bigint "bidding_category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.date "publish"
-    t.index ["bidding_category_id"], name: "index_bid_results_on_bidding_category_id"
-  end
-
-  create_table "bidding_categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "category_fonts", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -236,6 +145,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
     t.string "icon_title"
   end
 
+  create_table "category_stores", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -244,32 +159,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "phone"
-  end
-
-  create_table "contract_ends", force: :cascade do |t|
-    t.string "file"
-    t.string "number"
-    t.date "date_publish"
-    t.string "supplier"
-    t.string "object"
-    t.bigint "bidding_category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["bidding_category_id"], name: "index_contract_ends_on_bidding_category_id"
-  end
-
-  create_table "contracts", force: :cascade do |t|
-    t.string "file"
-    t.string "number"
-    t.date "publish_date"
-    t.string "modality"
-    t.string "process"
-    t.string "supplier"
-    t.string "object"
-    t.bigint "bidding_category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["bidding_category_id"], name: "index_contracts_on_bidding_category_id"
   end
 
   create_table "font_primaries", force: :cascade do |t|
@@ -295,22 +184,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "law_categories", force: :cascade do |t|
+  create_table "item_stories", force: :cascade do |t|
     t.string "name"
+    t.string "description"
+    t.bigint "category_stores_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug"
-  end
-
-  create_table "laws", force: :cascade do |t|
-    t.string "file"
-    t.date "publish_date"
-    t.string "name"
-    t.string "ementa"
-    t.bigint "law_category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["law_category_id"], name: "index_laws_on_law_category_id"
+    t.index ["category_stores_id"], name: "index_item_stories_on_category_stores_id"
   end
 
   create_table "link_tops", force: :cascade do |t|
@@ -340,15 +220,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
     t.integer "ordem"
   end
 
-  create_table "official_diaries", force: :cascade do |t|
-    t.date "publish_date"
-    t.string "number"
-    t.string "ementa"
-    t.string "file"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "pages", force: :cascade do |t|
     t.string "title"
     t.string "photo"
@@ -358,7 +229,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
     t.bigint "album_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "summary"
     t.index ["album_id"], name: "index_pages_on_album_id"
   end
 
@@ -368,6 +238,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_permissions_on_user_id"
+  end
+
+  create_table "photo_itens", force: :cascade do |t|
+    t.string "photo"
+    t.bigint "item_stories_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_stories_id"], name: "index_photo_itens_on_item_stories_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -455,23 +333,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
     t.string "name_secretary"
   end
 
-  create_table "separate_file_archives", force: :cascade do |t|
-    t.string "title"
-    t.string "archive"
-    t.string "slug"
-    t.bigint "separate_file_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["separate_file_id"], name: "index_separate_file_archives_on_separate_file_id"
-  end
-
-  create_table "separate_files", force: :cascade do |t|
-    t.string "page_link"
-    t.string "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "site_colors", force: :cascade do |t|
     t.string "primary", default: "#FFFFFF"
     t.string "sencondary", default: "#FFFFFF"
@@ -486,6 +347,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
     t.string "facebook"
     t.string "instagram"
     t.string "whatsapp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string "name"
+    t.string "text"
+    t.string "description"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -528,29 +398,19 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_11_190811) do
   add_foreign_key "albums", "album_categories"
   add_foreign_key "albums_pages", "albums"
   add_foreign_key "albums_pages", "pages"
-  add_foreign_key "archive_completes", "bid_completes"
-  add_foreign_key "archive_contract_ends", "contract_ends"
-  add_foreign_key "archive_contracts", "contracts"
-  add_foreign_key "archive_notices", "bid_notices"
-  add_foreign_key "archive_results", "bid_results"
   add_foreign_key "archive_secretaries", "secretaries"
   add_foreign_key "banners", "format_ads"
-  add_foreign_key "bid_completes", "bidding_categories"
-  add_foreign_key "bid_notices", "bidding_categories"
-  add_foreign_key "bid_results", "bidding_categories"
-  add_foreign_key "contract_ends", "bidding_categories"
-  add_foreign_key "contracts", "bidding_categories"
   add_foreign_key "font_primaries", "category_fonts"
   add_foreign_key "font_secondaries", "category_fonts"
-  add_foreign_key "laws", "law_categories"
+  add_foreign_key "item_stories", "category_stores", column: "category_stores_id"
   add_foreign_key "pages", "albums"
   add_foreign_key "permissions", "users"
+  add_foreign_key "photo_itens", "item_stories", column: "item_stories_id"
   add_foreign_key "photos", "albums"
   add_foreign_key "post_images", "posts"
   add_foreign_key "post_views", "posts"
   add_foreign_key "posts", "post_categories"
   add_foreign_key "quick_access_views", "quick_accesses"
   add_foreign_key "quick_accesses", "category_quick_accesses"
-  add_foreign_key "separate_file_archives", "separate_files"
   add_foreign_key "sub_menus", "menus"
 end

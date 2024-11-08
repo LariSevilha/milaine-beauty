@@ -590,134 +590,64 @@ RailsAdmin.config do |config|
       end
     end
   end
-      
        
-  
  
-  
-  ###  SeparateFile ###
-  config.model "SeparateFile" do
-    navigation_icon "fa-solid fa-file-zipper"
-    navigation_label 'Arquivos Separados'
-    list do
-      field :id 
-      field :separate_file_archives
-      
-    end
-    edit do
-      field :separate_file_archives
-   end
-  end
-  
-  ###  SeparateFileArchive ###
-  config.model "SeparateFileArchive" do
-    visible false
+  config.model 'ItemStory' do
+    navigation_label 'Loja' 
     list do
       field :id
-      field :title 
+      field :name
+      field :description
+      field :category_store
+      field :created_at
     end
     edit do
-      field :title
-      field :archive 
-      field :page_link do
-        read_only true
-        pretty_value do
-          bindings[:view].link_to(bindings[:object].page_link, bindings[:object].page_link, target: '_blank', class: 'styled-link')
-        end
-      end
-   end
-  end
-  
-  ### ArchiveComplete ###
-  config.model "ArchiveComplete" do
-    visible false
-    list do
-      field :id
-      field :title
-      field :archive 
-    end
-    create do
-      field :title
-      field :archive 
-    end
-    edit do
-      field :title
-      field :archive 
+      field :name
+      field :description
+      field :category_store
+      field :photo_itens
     end
   end
 
-  ### ArchiveContractEnd ###
-  config.model "ArchiveContractEnd" do
-    visible false
+  # Configuration for CategoryStore
+  config.model 'CategoryStore' do
+    navigation_label 'Loja' 
     list do
       field :id
-      field :title
-      field :archive 
-    end
-    create do
-      field :title
-      field :archive 
+      field :name 
     end
     edit do
-      field :title
-      field :archive 
+      field :name
     end
   end
 
-  ### ArchiveContract ###
-  config.model "ArchiveContract" do
-    visible false
+  config.model 'PhotoIten' do
+    visible false  
     list do
       field :id
-      field :title
-      field :archive 
-    end
-    create do
-      field :title
-      field :archive 
+      field :photo 
     end
     edit do
-      field :title
-      field :archive 
-    end
-  end
-
-  ### ArchiveNotice ###
-  config.model "ArchiveNotice" do
-    visible false
-    list do
-      field :id
-      field :title
-      field :archive 
-    end
-    create do
-      field :title
-      field :archive 
-    end
-    edit do
-      field :title
-      field :archive 
-    end
-  end
-
-  ### ArchiveResult ###
-  config.model "ArchiveResult" do
-    visible false
-    list do
-      field :id
-      field :title
-      field :archive 
-    end
-    create do
-      field :title
-      field :archive 
-    end
-    edit do
-      field :title
-      field :archive 
+      field :photo 
     end
   end
   
+  config.model 'Store' do
+    navigation_label 'Loja' 
+    list do
+      field :id
+      field :name
+      field :description
+    end
+    edit do
+      field :name
+      field :image
+      field :text
+      field :description
+    end
+  end
+
+
   dashboard                    
   index                        
   new do
