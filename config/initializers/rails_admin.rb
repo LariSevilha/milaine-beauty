@@ -125,6 +125,7 @@ RailsAdmin.config do |config|
       field :whatsapp
       field :instagram
       field :facebook 
+      field :insta_show
     end    
   end
   

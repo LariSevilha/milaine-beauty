@@ -4,6 +4,7 @@ class CreateSocialMedia < ActiveRecord::Migration[7.0]
       t.string :facebook
       t.string :instagram
       t.string :whatsapp
+      t.text   :insta_show
 
       t.timestamps
     end

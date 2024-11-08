@@ -1,0 +1,5 @@
+<% @socials.each do |social| %>
+  <% if social.insta_show.present? %>
+    <%= social.insta_show.html_safe %>
+  <% end %>
+<% end %>

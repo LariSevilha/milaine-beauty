@@ -57,38 +57,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_08_192904) do
     t.index ["album_category_id"], name: "index_albums_on_album_category_id"
   end
 
-  create_table "albums_pages", force: :cascade do |t|
-    t.bigint "album_id"
-    t.bigint "page_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["album_id"], name: "index_albums_pages_on_album_id"
-    t.index ["page_id"], name: "index_albums_pages_on_page_id"
-  end
-
   create_table "albums_posts", id: false, force: :cascade do |t|
     t.bigint "album_id", null: false
     t.bigint "post_id", null: false
     t.index ["album_id", "post_id"], name: "index_album_post"
     t.index ["post_id", "album_id"], name: "index_post_album"
-  end
-
-  create_table "archive_pages", force: :cascade do |t|
-    t.string "title"
-    t.string "link"
-    t.string "archive"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "page_id"
-  end
-
-  create_table "archive_secretaries", force: :cascade do |t|
-    t.string "title"
-    t.string "archive"
-    t.bigint "secretary_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["secretary_id"], name: "index_archive_secretaries_on_secretary_id"
   end
 
   create_table "audits", force: :cascade do |t|
@@ -136,13 +109,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_08_192904) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "category_quick_accesses", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "icon_title"
   end
 
   create_table "category_stores", force: :cascade do |t|
@@ -202,13 +168,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_08_192904) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "links_pages", id: false, force: :cascade do |t|
-    t.integer "page_id", null: false
-    t.integer "link_id", null: false
-    t.index ["link_id", "page_id"], name: "index_link_page"
-    t.index ["page_id", "link_id"], name: "index_page_link"
-  end
-
   create_table "menus", force: :cascade do |t|
     t.string "name"
     t.string "link"
@@ -218,18 +177,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_08_192904) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "ordem"
-  end
-
-  create_table "pages", force: :cascade do |t|
-    t.string "title"
-    t.string "photo"
-    t.text "description"
-    t.string "slug"
-    t.string "page_link"
-    t.bigint "album_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["album_id"], name: "index_pages_on_album_id"
   end
 
   create_table "permissions", force: :cascade do |t|
@@ -301,38 +248,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_08_192904) do
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
-  create_table "quick_access_views", force: :cascade do |t|
-    t.bigint "quick_access_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["quick_access_id"], name: "index_quick_access_views_on_quick_access_id"
-  end
-
-  create_table "quick_accesses", force: :cascade do |t|
-    t.string "name"
-    t.string "link"
-    t.text "description"
-    t.string "icon"
-    t.bigint "category_quick_access_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "new_page"
-    t.integer "views_count"
-    t.index ["category_quick_access_id"], name: "index_quick_accesses_on_category_quick_access_id"
-  end
-
-  create_table "secretaries", force: :cascade do |t|
-    t.string "nome"
-    t.string "photo"
-    t.string "page_link"
-    t.text "description"
-    t.text "summary"
-    t.string "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name_secretary"
-  end
-
   create_table "site_colors", force: :cascade do |t|
     t.string "primary", default: "#FFFFFF"
     t.string "sencondary", default: "#FFFFFF"
@@ -347,6 +262,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_08_192904) do
     t.string "facebook"
     t.string "instagram"
     t.string "whatsapp"
+    t.text "insta_show"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -396,21 +312,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_08_192904) do
   end
 
   add_foreign_key "albums", "album_categories"
-  add_foreign_key "albums_pages", "albums"
-  add_foreign_key "albums_pages", "pages"
-  add_foreign_key "archive_secretaries", "secretaries"
   add_foreign_key "banners", "format_ads"
   add_foreign_key "font_primaries", "category_fonts"
   add_foreign_key "font_secondaries", "category_fonts"
   add_foreign_key "item_stories", "category_stores", column: "category_stores_id"
-  add_foreign_key "pages", "albums"
   add_foreign_key "permissions", "users"
   add_foreign_key "photo_itens", "item_stories", column: "item_stories_id"
   add_foreign_key "photos", "albums"
   add_foreign_key "post_images", "posts"
   add_foreign_key "post_views", "posts"
   add_foreign_key "posts", "post_categories"
-  add_foreign_key "quick_access_views", "quick_accesses"
-  add_foreign_key "quick_accesses", "category_quick_accesses"
   add_foreign_key "sub_menus", "menus"
 end
