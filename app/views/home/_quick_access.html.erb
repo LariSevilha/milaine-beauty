@@ -1,0 +1,92 @@
+<% if @acess.present? %>
+  <section class="w-full py-8 bg-[<%= site_colors.sencondary %>]">
+    <div class="container mx-auto">
+      <div data-controller="category-access">
+        <%# font_primary = FontPrimary.first %>
+        <h1 class="text-4xl text-bold text-[<%= site_colors.primary %>] text-center mb-8" style="font-family: <%= FontPrimary.first.category_font.title %>;">Acesso Rápido</h1>
+        <div class="flex gap-2 mb-2">
+          <% @acess.order(:id).each_with_index do |category, index| %>
+
+            <% background_class =
+              case index
+              when 0
+                "bg-[#004296] hover:bg-[#1353A6]"
+              when 1
+                "bg-[#88BC80] hover:bg-[#A1DB98]"
+              when 2
+                "bg-[#C8C210] hover:bg-[#E5DF00]"
+              end %>
+
+            <%= link_to "#", id: "toggle-#{category.id}", data: { action: "click->category-access#tab", category_id: category.id }, class: "category-toggle w-full md:w-auto py-3 sm:py-5 px-8 sm:px-12 rounded transition duration-300 ease-in-out transform hover:scale-105 text-center text-xl text-white #{background_class} capitalize poppins-regular flex justify-center gap-1 items-end" do %>
+              <% if category.icon_title.present? %>
+                <%= image_tag category.icon_title.url, class: "w-max sm:w-8 h-8 block" %>
+              <% end %>
+              <span class="hidden exclude-contrast sm:block"><%= category.title %></span>
+            <% end %>
+          <% end %>
+        </div>
+        <% @acess.order(:id).each_with_index do |category, index| %>
+          <% background_class =
+            case index
+            when 0
+              "bg-[#004296]"
+            when 1
+              "bg-[#88BC80]"
+            when 2
+              "bg-[#C8C210]"
+            end %>
+          <% background_class_hover =
+            case index
+            when 0
+              "bg-[#004296] hover:bg-[#1353A6]"
+            when 1
+              "bg-[#88BC80] hover:bg-[#A1DB98]"
+            when 2
+              "bg-[#C8C210] hover:bg-[#E5DF00]"
+            end %>
+          <div
+            id="category-items-<%= category.id %>"
+            data-category-access-target="items"
+            data-category-id="<%= category.id %>"
+            class="
+              exclude-contrast
+              category-items
+              <%= 'hidden' unless index == 0 %>
+              grid
+              grid-cols-2
+              sm:grid-cols-3
+              md:grid-cols-3
+              lg:grid-cols-5
+              xl:grid-cols-6
+              gap-4
+              <%= background_class %>
+              rounded
+              p-4
+            "
+          >
+            <% category.quick_accesses.order(:id).each do |item| %>
+              <%= link_to item.link, target: ("_blank" if item.new_page), class: "aspect-square block text-white font-bold py-4 px-6 rounded transition duration-300 ease-in-out transform hover:scale-105 shadow-lg #{background_class_hover} hover:bg-opacity-75 text-center", data: { action: "click->category-access#incrementView", category_id: category.id, quick_access_id: item.id } do %>
+                <div class="flex flex-col items-center justify-center exclude-contrast">
+                  <%= image_tag item.icon_url, class: "w-12 h-12 mb-6 text-white" %>
+                  <div class="exclude-contrast">
+                    <p class="text-md capitalize poppins-regular exclude-contrast line-clamp-2"><%= item.name.truncate(35) %></p>
+                    <p class="text-sm text-gray-100"><%#= item.description.html_safe %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<%= javascript_tag do %>
+  document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('[data-action="click->category-access#incrementView"]').forEach(function(element) {
+  element.addEventListener('click', function(event) { event.preventDefault(); var quickAccessId = event.currentTarget.getAttribute('data-quick-access-id'); var link =
+  event.currentTarget.getAttribute('href'); var target = event.currentTarget.getAttribute('target'); fetch('/increment_quick_access_views/' + quickAccessId, { method: 'POST',
+  headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'), 'Content-Type': 'application/json' } }).then(function(response) { if
+  (response.ok) { console.log('Incremented views for quick access ID:', quickAccessId); if (target === "_blank") { window.open(link, '_blank'); } else { window.location.href =
+  link; } } else { console.error('Failed to increment views'); } }).catch(function(error) { console.error('Error:', error); }); }); }); });
+<% end %>
