@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   post 'increment_quick_access_views/:id', to: 'application#increment_quick_access_views', as: :increment_quick_access_views
 
   #about
-  get "sobre-nos", to: "about#index", as: :about
+  get "sobre-nos", to: "about#index", as: :about 
   
- 
+
   # Contact
   post 'fale-conosco' => 'contacts#create', as: :create_contact
   get 'fale-conosco' => 'contacts#index', as: :contact
@@ -38,6 +38,9 @@ Rails.application.routes.draw do
   get "galerias/:slug/adicionar-foto" => "albums#new_photo", as: :new_photo
 
   post "galerias/:slug/create_photo" => "albums#create_photo", as: :album_create_photo
+ 
+  get 'category/:category', to: 'albums#category', as: 'category'
+
 
   #videos
   get "videos" => "videos#index", as: :videos

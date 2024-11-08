@@ -27,7 +27,6 @@ class AlbumsController < ApplicationController
     else
       @photo = Photo.new
     end
-    
   end
 
   def create_photo
@@ -42,12 +41,19 @@ class AlbumsController < ApplicationController
       @photo.save      
     end
   end
-  
+ 
+  def category
+    @category = params[:category]
+    @albums = Album.where(album_category: AlbumCategory.find_by(name: @category))
+
+    set_meta_tags(
+      title: "Álbuns - #{@category}",
+    )
+  end 
+
   private
   
   def photo_params
     params.require(:photo).permit(:image)
   end
-  
-
 end
