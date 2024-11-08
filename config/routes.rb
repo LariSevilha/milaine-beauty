@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'oxoplastia/index'
   get 'store/index'
   root 'home#index'
 

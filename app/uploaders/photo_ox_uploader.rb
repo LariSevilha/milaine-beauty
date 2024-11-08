@@ -1,4 +1,4 @@
-class LogoClientUploader < CarrierWave::Uploader::Base
+class PhotoOxUploader < CarrierWave::Uploader::Base
   include CarrierWave::Vips
 
   # Choose what kind of storage to use for this uploader:

@@ -112,6 +112,18 @@ RailsAdmin.config do |config|
     end    
   end
 
+  config.model 'Oxoplastium' do    
+    navigation_label 'Oxoplastia'
+    list do
+      field :id       
+      field :text      
+    end
+    edit do     
+      field :text, :wysihtml5
+      field :photo     
+    end    
+  end
+
    
   #redes sociais
   config.model 'SocialMedium' do 
