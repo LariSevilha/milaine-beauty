@@ -6,7 +6,7 @@
           <div class="w-full flex justify-between items-center text-[<%= site_colors.primary %>] border-b-[2px] pb-[8px] mb-8 uppercase">
             <h2 class="text-md md:text-lg md:karla-bold uppercase"><%= category %></h2>
             <h5 class="text-md md:text-lg md:karla-bold">
-              <%#= link_to "Ver mais", category_albums_path(category: category) %>
+              <%= link_to "Ver mais", category_path(category: category) %>
             </h5>
           </div>
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
