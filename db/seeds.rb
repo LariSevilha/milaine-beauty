@@ -20,9 +20,9 @@ puts "--> Admin criado"
 # # Create About
  About.create([
    { 
-     sumary: "Sobre a Prefeitura de Jateí",
-     text: "A Prefeitura de Jateí é um órgão do poder executivo do município de Jateí, no estado de Mato Grosso do Sul, Brasil. Ela é responsável pela administração de diversos aspectos da vida pública local, como educação, saúde, urbanismo e infraestrutura. A prefeitura está sempre trabalhando para melhorar a qualidade de vida dos cidadãos de Jateí, implementando políticas públicas eficazes e promovendo o desenvolvimento sustentável do município.",
-     photo: Rails.root.join("db/assets/images/jatei.jpg").open
+     sumary: "Prazer, Milaine  Maraci",
+     text: "Fui consagrada para isso e muito mais,levar beleza e autoestima para o mundo 🌍",
+     photo: Rails.root.join("db/assets/images/milaine.jpeg").open
    }
  ])
 #  puts "--> About criado"
