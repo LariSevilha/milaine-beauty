@@ -18,75 +18,75 @@ puts "--> Admin criado"
 # ])
 # puts "--> Banners criados"
 # # Create About
-#  About.create([
-#    { 
-#      sumary: "Sobre a Prefeitura de Jateí",
-#      text: "A Prefeitura de Jateí é um órgão do poder executivo do município de Jateí, no estado de Mato Grosso do Sul, Brasil. Ela é responsável pela administração de diversos aspectos da vida pública local, como educação, saúde, urbanismo e infraestrutura. A prefeitura está sempre trabalhando para melhorar a qualidade de vida dos cidadãos de Jateí, implementando políticas públicas eficazes e promovendo o desenvolvimento sustentável do município.",
-#      photo: Rails.root.join("db/assets/images/jatei.jpg").open
-#    }
-#  ])
+ About.create([
+   { 
+     sumary: "Sobre a Prefeitura de Jateí",
+     text: "A Prefeitura de Jateí é um órgão do poder executivo do município de Jateí, no estado de Mato Grosso do Sul, Brasil. Ela é responsável pela administração de diversos aspectos da vida pública local, como educação, saúde, urbanismo e infraestrutura. A prefeitura está sempre trabalhando para melhorar a qualidade de vida dos cidadãos de Jateí, implementando políticas públicas eficazes e promovendo o desenvolvimento sustentável do município.",
+     photo: Rails.root.join("db/assets/images/jatei.jpg").open
+   }
+ ])
 #  puts "--> About criado"
 ## Create CategoryFonts
-# category_font_1 = CategoryFont.create({
-#   title: "Poppins"
-# })
+category_font_1 = CategoryFont.create({
+  title: "Poppins"
+})
 
-# category_font_2 = CategoryFont.create({
-#   title: "Poppins"
-# })
+category_font_2 = CategoryFont.create({
+  title: "Poppins"
+})
 
-# ## Create FontPrimaries
-# FontPrimary.create([
-#   {
-#     category_font_id: category_font_1.id
-#   }
-# ])
+## Create FontPrimaries
+FontPrimary.create([
+  {
+    category_font_id: category_font_1.id
+  }
+])
 
-# ## Create FontSecondaries
-# FontSecondary.create([
-#   {
-#     category_font_id: category_font_2.id
-#   }
-# ])
+## Create FontSecondaries
+FontSecondary.create([
+  {
+    category_font_id: category_font_2.id
+  }
+])
 
 # puts "--> CategoryFonts, FontPrimaries e FontSecondaries criados"
-# # Create Album Categories
-# album_categories = AlbumCategory.create([
-#   { name: "Cidade" },
-#   { name: "festa"  },
-#   { name: "Igreja"  }
-# ])
-# puts "--> Album Categories criados"
+# Create Album Categories
+album_categories = AlbumCategory.create([
+  { name: "Cidade" },
+  { name: "festa"  },
+  { name: "Igreja"  }
+])
+puts "--> Album Categories criados"
 
-# # Create Albums
-# albums = Album.create([
-#   { title: "Jateí", date_publish: DateTime.now - 1.year, description: "A cidade maravilhosa!", slug: "jatei", featured: true, album_category: album_categories[0] },
-#   { title: "Festa da fogueira", date_publish: DateTime.now - 6.months, description: "A maior festa de jateí ms.", slug: "festa-da-fogueira", featured: true, album_category: album_categories[1] },
-#   { title: "Cavalgada", date_publish: DateTime.now - 6.months, description: "Tradição da cavalgada da fogueira", slug: "cavalgada", featured: true, album_category: album_categories[1] },
-#   { title: "Igreja santo antonio é inaugurada", date_publish: DateTime.now - 6.months, description: "Igreja santo antonio é inaugurada no centro", slug: "igreja-santo-antonio-e-inaugurada", featured: true, album_category: album_categories[2] }
-# ])
-# puts "--> Albums criados"
+# Create Albums
+albums = Album.create([
+  { title: "Jateí", date_publish: DateTime.now - 1.year, description: "A cidade maravilhosa!", slug: "jatei", featured: true, album_category: album_categories[0] },
+  { title: "Festa da fogueira", date_publish: DateTime.now - 6.months, description: "A maior festa de jateí ms.", slug: "festa-da-fogueira", featured: true, album_category: album_categories[1] },
+  { title: "Cavalgada", date_publish: DateTime.now - 6.months, description: "Tradição da cavalgada da fogueira", slug: "cavalgada", featured: true, album_category: album_categories[1] },
+  { title: "Igreja santo antonio é inaugurada", date_publish: DateTime.now - 6.months, description: "Igreja santo antonio é inaugurada no centro", slug: "igreja-santo-antonio-e-inaugurada", featured: true, album_category: album_categories[2] }
+])
+puts "--> Albums criados"
 
-# # Create Photos
-# photos = [
-#   { image_path: Rails.root.join("db/assets/images/jatei.jpg"), album: albums.first },
-#   { image_path: Rails.root.join("db/assets/images/jatei-ms.jpg"), album: albums[1] },
-#   { image_path: Rails.root.join("db/assets/images/jateifogueira24.jpg"), album: albums[1] },
-#   { image_path: Rails.root.join("db/assets/images/cavalgada.jpg"), album: albums[2] },
-#   { image_path: Rails.root.join("db/assets/images/igreja.jpg"), album: albums.last }
-# ].map do |photo_attrs|
-#   photo = Photo.new(album: photo_attrs[:album])
-#   photo.image = photo_attrs[:image_path].open
-#   photo.save
-#   photo
-# end
+# Create Photos
+photos = [
+  { image_path: Rails.root.join("db/assets/images/jatei.jpg"), album: albums.first },
+  { image_path: Rails.root.join("db/assets/images/jatei-ms.jpg"), album: albums[1] },
+  { image_path: Rails.root.join("db/assets/images/jateifogueira24.jpg"), album: albums[1] },
+  { image_path: Rails.root.join("db/assets/images/cavalgada.jpg"), album: albums[2] },
+  { image_path: Rails.root.join("db/assets/images/igreja.jpg"), album: albums.last }
+].map do |photo_attrs|
+  photo = Photo.new(album: photo_attrs[:album])
+  photo.image = photo_attrs[:image_path].open
+  photo.save
+  photo
+end
 # puts "--> Photos criados"
  
  
 # # Create SocialMedium
-# SocialMedium.create([
-#   { facebook: "http://facebook.com/example", instagram: "http://instagram.com/example", whatsapp: "1234567890" }
-# ])
+SocialMedium.create([
+  { facebook: "http://facebook.com/example", instagram: "http://instagram.com/example", whatsapp: "1234567890" }
+])
 # puts "--> Social Medium criado"
 
 # # Create Videos
@@ -99,13 +99,13 @@ puts "--> Admin criado"
 # # db/seeds.rb
 
 # # Create SiteColor
-#  SiteColor.create(
-#    primary: "#004296", 
-#    sencondary: "#F1F1F1", 
-#    terciary: "#777777",
-#    logo_header: File.open(Rails.root.join('db/assets/images/logo-top.svg')),
-#    logo_footer: File.open(Rails.root.join('db/assets/images/logo-top.svg'))
-#  )
+ SiteColor.create(
+   primary: "#0E345E", 
+   sencondary: "#F1F1F1", 
+   terciary: "#777777",
+   logo_header: File.open(Rails.root.join('db/assets/images/logoheader.png')),
+   logo_footer: File.open(Rails.root.join('db/assets/images/logoheader.png'))
+ )
 #  puts "--> Cores do site e logos criadas"
 
  
