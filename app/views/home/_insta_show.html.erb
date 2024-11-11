@@ -1,5 +1,10 @@
-<% @socials.each do |social| %>
-  <% if social.insta_show.present? %>
-    <%= social.insta_show.html_safe %>
+<div class="container mx-auto" style="margin-top: 100px;">
+  <div>
+    <p class="text-map text-center" style="color: <%= site_colors.primary %>; font-family: <%= FontPrimary.first.category_font.title %>;">ACOMPANHE AS NOVIDADES PELO NOSSO INSTA:</p>
+  </div>
+  <% @socials.each do |social| %>
+    <% if social.insta_show.present? %>
+      <%= social.insta_show.html_safe %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
