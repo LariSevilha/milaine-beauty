@@ -1,8 +1,8 @@
 <% if @ox.present? %>
-  <%= @ox.each do |ox| %>
+  <% @ox.each do |ox| %>
     <%= ox.text %>
     <% if ox.photo.present? %>
-      <%= image_tag ox.photo %>
+      <%= image_tag ox.photo_url %>
     <% end %>
   <% end %>
 <% end %>
