@@ -660,6 +660,19 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'ScheduleYourAppointment' do
+    navigation_label 'Agende seu horário' 
+    list do
+      field :id 
+      field :description
+    end
+    edit do
+      field :photo
+      field :description, :wysihtml5
+      field :number
+    end
+  end
+  
 
   dashboard                    
   index                        

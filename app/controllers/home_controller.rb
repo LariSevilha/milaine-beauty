@@ -16,5 +16,6 @@ class HomeController < ApplicationController
       @non_featured_posts = Post.where(featured: false).order(date_publish: "DESC")
       @albuns = Album.where(featured: true).order(created_at: :desc).limit(4)
       @videos = Video.where(featured: true).order(created_at: :desc).limit(3)
+      @schedule = ScheduleYourAppointment.all
     end
 end
