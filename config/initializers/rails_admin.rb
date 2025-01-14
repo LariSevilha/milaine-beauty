@@ -121,8 +121,20 @@ RailsAdmin.config do |config|
     edit do     
       field :text, :wysihtml5
       field :photo     
+      field :gallery_oxes     
     end    
   end
+
+  config.model 'GalleryOx' do    
+    visible false
+    list do
+      field :id             
+    end
+    edit do       
+      field :photo     
+    end    
+  end
+ 
 
    
   #redes sociais

@@ -10,6 +10,7 @@ class HomeController < ApplicationController
       @about = About.first 
       @socials = SocialMedium.all
       @ox = Oxoplastium.all
+      @gallery_ox = GalleryOx.all
       @config = Adjustment.first 
       @posts = Post.where("date_publish <= ? AND is_published = ?", Time.now, true).order(date_publish: "DESC")
       @featured_posts = Post.where(featured: true).order(date_publish: "DESC").limit(5)
