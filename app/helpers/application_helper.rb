@@ -22,4 +22,8 @@ module ApplicationHelper
   def google_font_url(font_name)
     "https://fonts.googleapis.com/css2?family=#{CGI.escape(font_name).gsub('+', '%20')}:wght@100..900&display=swap"
   end
+
+  def format_phone_number(number)
+    number.gsub(/\D/, '')  
+  end
 end

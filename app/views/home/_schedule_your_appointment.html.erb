@@ -1,3 +1,4 @@
+<!-- filepath: /home/lari/Documentos/projetos-pessoais/milaine-beauty/app/views/home/_schedule_your_appointment.html.erb -->
 <% @schedule.each do |schedule| %>
   <div class="max-w-3xl mx-auto my-5 bg-white rounded-lg shadow-md">
     <div class="flex flex-col md:flex-row items-center">
@@ -10,7 +11,7 @@
         </div>
         <div>
           <%= button_to "Agende seu horário", 
-              "https://wa.me/#{schedule.number}", 
+              "https://wa.me/#{format_phone_number(schedule.number)}", 
               method: :get, 
               target: "_blank",
               class: "bg-blue-900 text-white py-3 px-6 rounded-lg font-semibold w-full hover:bg-blue-700 transition-colors" 
