@@ -21,8 +21,7 @@ RailsAdmin.config do |config|
       field :id
       field :name
       field :email 
-      field :admin
-      field :permissions
+      field :admin 
     end
     edit do 
       field :name
@@ -34,13 +33,7 @@ RailsAdmin.config do |config|
           bindings[:view]._current_user.admin?
         end
       end
-      field :permissions do
-        visible do
-          bindings[:view]._current_user.admin?
-        end
-        inline_add false
-        inline_edit false 
-      end
+    
     end
   end
   ### quick_access_view ###

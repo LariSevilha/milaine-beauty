@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do 
   get 'oxoplastia/index'
   get 'store/index'
   root 'home#index'
@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   #about
   get "sobre-nos", to: "about#index", as: :about 
+
+  get "galeria-oxtoplastia", to: "gallery_ox#index", as: :gallery_ox 
   
 
   # Contact

@@ -2,8 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   audited
-  
-  has_many :permissions
+    
   validates :name, :email, presence: true
   validates :password, :password_confirmation, presence: true, on: :create
   
